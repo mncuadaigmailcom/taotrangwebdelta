@@ -1,773 +1,786 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
 <style>
- .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
-body { background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: sans-serif; }
-.card { background: #222; padding: 25px; border-radius: 8px; text-align: center; border: 1px solid #00b0ff; box-shadow: 0 4px 15px rgba(0,176,255,0.2); width: 90%; max-width: 400px; margin: 20px; }
+ .fake-ad { background:#fff3cd; color:#856404; border:1px solid #ffeeba; padding:12px; margin:10px auto; border-radius:6px; text-align:center; font-family:sans-serif; position:relative; z-index:99999; display:flex; flex-direction:column; justify-content:center; align-items:center; } .fake-ad-tag { position:absolute; top:2px; left:5px; font-size:9px; background:#ccc; color:#fff; padding:1px 3px; border-radius:2px; } .fake-ad-title { font-size:13px; display:block; margin-bottom:4px; font-weight:bold; } .fake-ad-close { position:absolute; top:4px; right:6px; background:none; border:none; font-weight:bold; cursor:pointer; } .video-ad-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.96); color:white; z-index:99999999; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:sans-serif; padding:20px; text-align:center; } .video-box { width:100%; max-width:320px; height:180px; background:#000; display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; border:2px solid #00b0ff; margin-bottom:15px; border-radius:6px; color:#00b0ff; font-weight:bold; } .video-progress { width:82%; height:7px; background:#1b1b20; border-radius:4px; overflow:hidden; border:1px solid #2a2a32; } .video-progress-bar { width:0%; height:100%; background:linear-gradient(90deg,#00b0ff,#00e676); transition:width 1s linear; } .video-ad-badge { font-size:11px; color:#8e8e93; letter-spacing:0.5px; } .video-timer-text { font-size:14px; margin-bottom:15px; } .video-btn { padding:10px 20px; background:#00e676; border:none; color:#052e16; font-weight:bold; border-radius:4px; cursor:pointer; } .video-btn:disabled { background:#3a3a40!important; color:#8e8e93!important; cursor:not-allowed!important; opacity:0.6; }  .fake-ad { width: calc(100% - 20px); } 
+/* CSS và Fonts của trang web đã được tối ưu và tích hợp chuẩn xác trong tab HTML */
 </style>
 <script>(function() { const origLog = console.log; const origErr = console.error; const origWarn = console.warn; console.log = function(...args) { window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'); origLog.apply(console, args); }; console.error = function(...args) { window.parent.postMessage({ type: 'error', data: args.join(' ') }, '*'); origErr.apply(console, args); }; console.warn = function(...args) { window.parent.postMessage({ type: 'warn', data: args.join(' ') }, '*'); origWarn.apply(console, args); }; window.onerror = function(m, s, l) { window.parent.postMessage({ type: 'error', data: m + " (Dòng " + l + ")" }, '*'); }; })();</script>
+
+    <base href="https://oxalpha.com/chat">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="csrf-token" content="OW3IMj8vNBQMxh8iblrV9Anb39YbvO5KAjr5NgFP">
+    <title>Chat with Ox Alpha - Stealth Reasoning Model</title>
+    <meta name="description" content="Chat with Ox Alpha online for free. The stealth reasoning model with a 1M-token context — no registration, no hidden costs.">
+    <meta name="keywords" content="ox alpha chat, chat with ox alpha, stealth ai model, free ai chatbot, ox alpha online, ai chat no login">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ox Alpha">
+    <meta property="og:title" content="Chat with Ox Alpha - Stealth Reasoning Model">
+    <meta property="og:description" content="Chat with Ox Alpha online for free. The stealth reasoning model with a 1M-token context — no registration, no hidden costs.">
+    <meta property="og:url" content="https://oxalpha.com/chat">
+    <meta property="og:image" content="https://oxalpha.com/oxalpha.png">
+    <meta property="og:locale" content="en">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chat with Ox Alpha - Stealth Reasoning Model">
+    <meta name="twitter:description" content="Chat with Ox Alpha online for free. The stealth reasoning model with a 1M-token context — no registration, no hidden costs.">
+    <meta name="twitter:image" content="https://oxalpha.com/oxalpha.png">
+
+    <link rel="icon" type="image/png" href="https://oxalpha.com/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="https://oxalpha.com/favicon.svg">
+    <link rel="shortcut icon" href="https://oxalpha.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://oxalpha.com/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Ox Alpha">
+    <link rel="manifest" href="https://oxalpha.com/site.webmanifest">
+
+    <link rel="stylesheet" href="https://oxalpha.com/vendor/css/fonts.css">
+    <link rel="stylesheet" href="https://oxalpha.com/vendor/css/highlight-dark.min.css" id="hljs-theme">
+    <link rel="stylesheet" href="https://oxalpha.com/vendor/css/katex.min.css">
+    <link rel="stylesheet" href="https://oxalpha.com/chat-assets/chat.css?v=23">
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Tài Liệu Lớp 9 - Siêu Cấp 3D</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    <div id="root">
+</div>
 
-        :root {
-            --primary: #818cf8;
-            --secondary: #c084fc;
-            --accent: #22d3ee;
-            --bg-dark: #090d1a;
-            --glass-bg: rgba(15, 23, 42, 0.55);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --neon-shadow: 0 0 25px rgba(99, 102, 241, 0.20);
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            justify-content: center;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            padding: 20px 0;
-        }
-
-        .glow-nebula {
-            position: fixed;
-            width: 450px;
-            height: 450px;
-            filter: blur(140px);
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: nebula-drift 15s infinite alternate ease-in-out;
-        }
-        .nebula-1 { top: -10%; left: -5%; background: rgba(129, 140, 248, 0.35); }
-        .nebula-2 { bottom: -10%; right: -5%; background: rgba(192, 132, 252, 0.35); }
-
-        @keyframes nebula-drift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 60px) scale(1.15); }
-        }
-
-        .cyber-grid {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        #notification-box {
-            position: fixed; top: 24px; left: 50%; transform: translate(-50%, -120px);
-            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            color: white; padding: 16px 28px; border-radius: 18px;
-            font-size: 14px; font-weight: 700; z-index: 9999999;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0; width: max-content; max-width: 90vw; text-align: center;
-        }
-        #notification-box.toast-show { transform: translate(-50%, 0); opacity: 1; }
-        #notification-box.error { border-bottom: 3px solid #f43f5e; }
-        #notification-box.success { border-bottom: 3px solid #10b981; }
-        #notification-box.info { border-bottom: 3px solid #3b82f6; }
-
-        .main-container {
-            max-width: 460px;
-            width: 90%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            padding: 40px 30px;
-            border-radius: 36px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 
-                        inset 0 1px 1px rgba(255, 255, 255, 0.15),
-                        var(--neon-shadow);
-            text-align: center;
-            box-sizing: border-box;
-            z-index: 10;
-            transition: border-color 0.5s ease, transform 0.2s cubic-bezier(0.1, 0.8, 0.2, 1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        /* --- THỜI GIAN RESET (Tính năng mới) --- */
-        .timer-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #38bdf8;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            transform: translateZ(25px);
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        .timer-badge.active {
-            background: rgba(16, 185, 129, 0.15);
-            border-color: rgba(16, 185, 129, 0.3);
-            color: #34d399;
-        }
-        .timer-badge.warning {
-            background: rgba(244, 63, 94, 0.15);
-            border-color: rgba(244, 63, 94, 0.3);
-            color: #fb7185;
-            animation: pulse-warning 1s infinite alternate;
-        }
-        @keyframes pulse-warning {
-            from { box-shadow: 0 0 5px rgba(244, 63, 94, 0.2); }
-            to { box-shadow: 0 0 15px rgba(244, 63, 94, 0.5); }
-        }
-
-        .logo-wrapper {
-            position: relative;
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            animation: bounce-slow 4s infinite ease-in-out;
-            transform: translateZ(35px);
-        }
-        .logo-wrapper svg {
-            width: 36px;
-            height: 36px;
-            color: var(--accent);
-            filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.6));
-        }
-
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0) translateZ(35px) rotate(0deg); }
-            50% { transform: translateY(-8px) translateZ(35px) rotate(5deg); }
-        }
-
-        h1 {
-            font-size: 26px; margin: 0 0 10px 0; font-weight: 800; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #38bdf8, #c084fc, #6366f1);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            transform: translateZ(25px);
-        }
-
-        .sub-title { 
-            font-size: 14px; color: var(--text-muted); margin-bottom: 32px; font-weight: 600; 
-            transform: translateZ(20px);
-        }
-
-        .desc-box {
-            font-size: 13.5px;
-            text-align: left;
-            line-height: 1.6;
-            color: #cbd5e1;
-            background: rgba(15, 23, 42, 0.4);
-            padding: 16px 20px;
-            border-radius: 18px;
-            border-left: 4px solid #38bdf8;
-            margin-bottom: 28px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            transform: translateZ(15px);
-        }
-
-        .task-placeholder {
-            position: relative;
-            background: rgba(15, 23, 42, 0.45);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 18px;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.2s cubic-bezier(0.1, 0.8, 0.2, 1), background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            transform: translateZ(10px);
-            touch-action: pan-y; 
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .task-placeholder:hover {
-                background: rgba(30, 41, 59, 0.7);
-                border-color: rgba(99, 102, 241, 0.35);
-                box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.35);
-            }
-        }
-        .task-placeholder.success-box {
-            border-color: rgba(16, 185, 129, 0.35) !important;
-            background: rgba(16, 185, 129, 0.06) !important;
-            box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
-        }
-
-        .task-content {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            z-index: 2;
-            pointer-events: none;
-            transform: translateZ(30px); 
-        }
-        .task-icon {
-            width: 46px; height: 46px; border-radius: 16px;
-            background: linear-gradient(135deg, #1e1b4b, #311042);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 18px; color: #fff;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .task-placeholder:hover .task-icon {
-                transform: scale(1.1) rotate(5deg);
-            }
-        }
-        .task-icon svg { width: 22px; height: 22px; color: var(--secondary); }
-        .task-info { text-align: left; }
-        .task-title { font-size: 15px; font-weight: 700; color: #f8fafc; }
-        .task-desc { font-size: 12.5px; color: #94a3b8; margin-top: 4px; }
-
-        .status-badge {
-            z-index: 2; padding: 6px 14px; border-radius: 12px; font-size: 11px; font-weight: 800;
-            background: rgba(244, 63, 94, 0.12); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.2);
-            transform: translateZ(25px); 
-            transition: all 0.3s;
-        }
-        .status-badge.checking { background: rgba(234, 179, 8, 0.12); color: #facc15; border-color: rgba(234, 179, 8, 0.2); }
-        .status-badge.success { background: rgba(16, 185, 129, 0.12); color: #34d399; border-color: rgba(16, 185, 129, 0.2); }
-        .status-badge.error { background: rgba(244, 63, 94, 0.2); color: #f43f5e; border-color: rgba(244, 63, 94, 0.4); }
-
-        .task-link-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; text-decoration: none; border-radius: 24px;
-        }
-
-        .download-btn {
-            width: 100%; padding: 18px; border-radius: 20px; margin-top: 26px;
-            font-weight: 800; font-size: 15px; letter-spacing: 0.5px;
-            background: rgba(15, 23, 42, 0.7); color: #64748b; border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: not-allowed;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            transform: translateZ(10px);
-        }
-        .download-btn.active {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; border: none; cursor: pointer;
-            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.3); animation: pulse-neon 2s infinite;
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .download-btn.active:hover {
-                transform: translateY(-2px) translateZ(15px);
-                box-shadow: 0 20px 40px rgba(6, 182, 212, 0.45);
-            }
-        }
-
-        @keyframes pulse-neon {
-            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(6, 182, 212, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
-        }
-
-        /* --- NÚT RESET THỦ CÔNG (Tính năng mới) --- */
-        .reset-manual-btn {
-            width: 100%; padding: 14px; border-radius: 16px; margin-top: 15px;
-            font-weight: 700; font-size: 13px;
-            background: rgba(244, 63, 94, 0.08); color: #fb7185; 
-            border: 1px solid rgba(244, 63, 94, 0.2); cursor: pointer;
-            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transform: translateZ(10px);
-        }
-        @media (hover: hover) and (pointer: fine) {
-            .reset-manual-btn:hover {
-                background: rgba(244, 63, 94, 0.2);
-                transform: translateY(-2px) translateZ(15px);
-                box-shadow: 0 10px 20px rgba(244, 63, 94, 0.15);
-            }
-        }
-
-        #white-screen {
-            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(2, 6, 23, 0.85); z-index: 99999;
-            flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;
-        }
-        #white-screen.show { display: flex; animation: fadeInBlur 0.4s forwards; }
-        
-        @keyframes fadeInBlur {
-            from { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
-            to { opacity: 1; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-        }
-
-        .editor-wrapper {
-            max-width: 600px; width: 100%; background: rgba(30, 41, 59, 0.75);
-            border: 1px solid var(--glass-border); padding: 35px 26px; border-radius: 32px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.1); 
-            transform: translateY(25px); opacity: 0;
-            box-sizing: border-box;
-        }
-        #white-screen.show .editor-wrapper { animation: slideUp3D 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
-
-        @keyframes slideUp3D { to { transform: translateY(0); opacity: 1; } }
-
-        .editor-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-        }
-        .editor-title { font-size: 14px; font-weight: 700; color: #e2e8f0; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
-        .pulse-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: blink 2s infinite; }
-        @keyframes blink { 50% { opacity: 0.4; box-shadow: 0 0 0px transparent; } }
-
-        .page2-textarea {
-            width: 100%; height: 200px; background: rgba(15, 23, 42, 0.65);
-            color: #38bdf8; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 18px;
-            padding: 20px; font-size: 15px; resize: none; font-family: 'Courier New', Courier, monospace; box-sizing: border-box;
-            line-height: 1.6;
-        }
-        .page2-textarea:focus { outline: none; border-color: var(--primary); }
-
-        .action-buttons { display: flex; gap: 14px; margin-top: 20px; }
-        .action-buttons button {
-            flex: 1; padding: 16px; border-radius: 16px; font-weight: 800; font-size: 14px;
-            cursor: pointer; border: none; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            display: flex; justify-content: center; align-items: center; gap: 8px;
-        }
-        #copy-btn { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35); }
-        #back-btn { background: rgba(255, 255, 255, 0.08); color: white; border: 1px solid rgba(255, 255, 255, 0.1); }
-        @media (hover: hover) and (pointer: fine) {
-            #copy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5); }
-            #back-btn:hover { background: rgba(255, 255, 255, 0.16); }
-        }
-
-        @media (max-width: 420px) {
-            .main-container { padding: 35px 20px; }
-            .task-icon { width: 40px; height: 40px; font-size: 16px; }
-            .task-title { font-size: 14px; }
-            .action-buttons { flex-direction: column; gap: 10px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="cyber-grid"></div>
-    <div class="glow-nebula nebula-1"></div>
-    <div class="glow-nebula nebula-2"></div>
-
-    <div id="notification-box"></div>
-
-    <div class="main-container" id="giao-dien-chinh">
-        
-        <!-- THÊM ĐỒNG HỒ ĐẾM NGƯỢC Ở ĐÂY -->
-        <div class="timer-badge" id="timer-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span id="countdown-text">Phiên chưa bắt đầu</span>
-        </div>
-
-        <div class="logo-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5z" opacity="0.6"/>
-                <path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" opacity="0.6"/>
-            </svg>
-        </div>
-
-        <h1>Tài Liệu Học Tốt Lớp 9</h1>
-        <div class="sub-title">Bài Tập Tập 1 - Trang 2 & Cách Giải Chi Tiết</div>
-
-        <div class="desc-box">
-            📌 <strong>Hướng dẫn:</strong> Bấm vào từng nhiệm vụ bên dưới, chờ trang web load đủ tối thiểu 5 giây rồi quay lại đây để hệ thống cấp Script tự động. Thời gian mở khóa tồn tại trong 3 phút.
-        </div>
-
-        <!-- Khung nhiệm vụ 1 -->
-        <div class="task-placeholder" id="khung-nv1">
-            <div class="task-content">
-                <div class="task-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                        <path d="m9 12 2 2 4-4"/>
-                    </svg>
-                </div>
-                <div class="task-info">
-                    <div class="task-title">Xác minh hệ thống 1</div>
-                    <div class="task-desc">Bấm để xác thực liên kết 1</div>
-                </div>
-            </div>
-            <span class="status-badge" id="nhan-nv1">Chưa làm</span>
-            <a class="task-link-overlay" href="https://google.com" target="_blank" id="link-nv1"></a>
-        </div>
-
-        <!-- Khung nhiệm vụ 2 -->
-        <div class="task-placeholder" id="khung-nv2">
-            <div class="task-content">
-                <div class="task-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                    </svg>
-                </div>
-                <div class="task-info">
-                    <div class="task-title">Xác minh hệ thống 2</div>
-                    <div class="task-desc">Bấm để xác thực liên kết 2</div>
-                </div>
-            </div>
-            <span class="status-badge" id="nhan-nv2">Chưa làm</span>
-            <a class="task-link-overlay" href="https://github.com/" target="_blank" id="link-nv2"></a>
-        </div>
-
-        <button class="download-btn" id="nut-giai-bai">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-            <span>Hoàn thành nhiệm vụ để tiếp tục</span>
-        </button>
-
-        <!-- THÊM NÚT RESET THỦ CÔNG Ở ĐÂY -->
-        <button class="reset-manual-btn" id="nut-reset-thu-cong">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                <path d="M3 3v5h5"></path>
-            </svg>
-            <span>Làm Mới Trang & Nhiệm Vụ</span>
-        </button>
-    </div>
-
-    <!-- Màn hình hiển thị nội dung Copy -->
-    <div id="white-screen">
-        <div class="editor-wrapper">
-            <div class="editor-header">
-                <div class="editor-title">
-                    <span class="pulse-dot"></span> SCRIPT CỦA BẠN ĐÃ MỞ KHÓA
-                </div>
-            </div>
-            <textarea class="page2-textarea" id="noi-dung-page2" readonly></textarea>
-            
-            <div class="action-buttons">
-                <button id="back-btn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    Quay lại
-                </button>
-                <button id="copy-btn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    Sao chép Script
-                </button>
-            </div>
-        </div>
-    </div>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="" defer="">
+</script>
+        <script src="https://oxalpha.com/vendor/js/highlight.min.js">
+</script>
+    <script src="https://oxalpha.com/vendor/js/katex.min.js">
+</script>
+    <script src="https://oxalpha.com/vendor/js/marked.min.js">
+</script>
+    <script src="https://oxalpha.com/vendor/js/react.production.min.js">
+</script>
+    <script src="https://oxalpha.com/vendor/js/react-dom.production.min.js">
+</script>
 
     <script>
-        const SCRIPT_CUA_BAN = `loadstring(game:HttpGet("https://raw.githubusercontent.com/HieudepzaiHub/main/abc"))()`;
-        document.getElementById('noi-dung-page2').value = SCRIPT_CUA_BAN;
+        window.__CHAT_MODELS__ = [{"id":"stealth\/ox-alpha","slug":"ox-alpha","name":"Ox Alpha","color":"#6e56cf"}];
+        window.__CHAT_SITE_NAME__ = "Ox Alpha";
+        window.__CHAT_LOGO__ = '/chat-logo.svg';
+        window.__CHAT_LANG__ = null;
+        window.__TURNSTILE_SITE_KEY__ = "0x4AAAAAABp_UYRVl7snkQ51";
+        window.__CHAT_IMAGES__ = {"max":2,"maxBytes":5242880,"history":4};
+        window.__CHAT_FILES__ = {"max":3,"maxBytes":102400};
+        // Sidebar starts collapsed by default. Applied once per browser (flag), after which the
+        // app keeps persisting whatever the user chooses.
+        try {
+            if (localStorage.getItem('ox_sidebar_default_v2') === null) {
+                localStorage.setItem('chattest_sidebar_collapsed', 'true');
+                localStorage.setItem('ox_sidebar_default_v2', '1');
+            }
+        } catch (e) {}
+        // Turnstile checkpoint modal. window.__oxVerify(info) → Promise<token|null>; the fetch wrapper
+        // below calls it when /api/chat answers 428 turnstile_required, then re-sends with the token.
+        (function () {
+            var SITE = window.__TURNSTILE_SITE_KEY__ || '';
+            if (!SITE) return;
+            var pending = null;
+            function ready(cb, tries) {
+                if (window.turnstile && window.turnstile.render) return cb(true);
+                if (tries <= 0) return cb(false);
+                setTimeout(function () { ready(cb, tries - 1); }, 150);
+            }
+            window.__oxVerify = function (info) {
+                if (pending) return pending;
+                pending = new Promise(function (resolve) {
+                    var overlay = document.createElement('div');
+                    overlay.className = 'ox-verify';
+                    overlay.innerHTML =
+                        '<div class="ox-verify-card" role="dialog" aria-modal="true" aria-labelledby="ox-verify-title">' +
+                        '<div class="ox-verify-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <polyline points="9 12 11 14 15 10"/>
+</svg>
+</div>' +
+                        '<h2 id="ox-verify-title">Quick check</h2>' +
+                        '<p>Please confirm you\'re human to keep chatting. It only takes a second.</p>' +
+                        '<div class="ox-verify-widget">
+</div>' +
+                        '<button type="button" class="ox-verify-cancel">Not now</button>
+</div>';
+                    document.body.appendChild(overlay);
+                    var widgetId = null, done = false;
+                    function finish(token) {
+                        if (done) return; done = true;
+                        try { if (widgetId !== null && window.turnstile) window.turnstile.remove(widgetId); } catch (e) {}
+                        overlay.classList.remove('show');
+                        setTimeout(function () { overlay.remove(); }, 220);
+                        pending = null;
+                        resolve(token || null);
+                    }
+                    overlay.querySelector('.ox-verify-cancel').addEventListener('click', function () { finish(null); });
+                    overlay.addEventListener('click', function (e) { if (e.target === overlay) finish(null); });
+                    requestAnimationFrame(function () { overlay.classList.add('show'); });
+                    ready(function (ok) {
+                        var box = overlay.querySelector('.ox-verify-widget');
+                        if (!ok) { box.textContent = 'Verification could not load. Please reload the page and try again.'; return; }
+                        widgetId = window.turnstile.render(box, {
+                            sitekey: SITE,
+                            theme: document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark',
+                            size: 'flexible',
+                            action: 'chat',
+                            language: window.__CHAT_LANG__ || 'auto',
+                            callback: function (token) { setTimeout(function () { finish(token); }, 350); },
+                            'expired-callback': function () { try { window.turnstile.reset(widgetId); } catch (e) {} }
+                        });
+                    }, 40);
+                });
+                return pending;
+            };
+        })();
 
-        // HIỆU ỨNG TILT 3D 
-        const items = document.querySelectorAll('.task-placeholder, .main-container');
-        function applyTilt(element, x, y, width, height) {
-            const rotateX = ((y - height / 2) / height) * -24; 
-            const rotateY = ((x - width / 2) / width) * 24; 
-            element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04, 1.04, 1.04)`;
+        // Response phase tracker for the "Thinking…" status + Turnstile checkpoint retry. Wraps
+        // fetch('/api/chat'): a 428 turnstile_required answer opens the modal and re-sends the same
+        // request with X-Turnstile-Token; the pass-through stream is inspected for the status text
+        // (keep-alives only → queued, reasoning deltas → thinking, first content → answering).
+        // Never alters the bytes the app receives.
+        window.__oxPhase = 'idle';
+        window.__oxPhaseAt = 0;
+        (function () {
+            var nativeFetch = window.fetch;
+            if (!nativeFetch || !window.TransformStream || !window.TextDecoder) return;
+            function setPhase(p) { if (window.__oxPhase !== p) { window.__oxPhase = p; window.__oxPhaseAt = Date.now(); } }
+            window.fetch = function (input, init) {
+                var url = typeof input === 'string' ? input : (input && input.url) || '';
+                if (url.indexOf('/api/chat') === -1) return nativeFetch.apply(this, arguments);
+                var self = this, args = arguments;
+                // Attachments add-on (loaded after the app) may turn the last user message into text+image parts.
+                if (typeof window.__oxRewriteChatBody === 'function' && init && typeof init.body === 'string') {
+                    try {
+                        var rewritten = window.__oxRewriteChatBody(init.body);
+                        if (typeof rewritten === 'string' && rewritten !== init.body) { init = Object.assign({}, init, { body: rewritten }); args = [input, init]; }
+                    } catch (e) {}
+                }
+                setPhase('connecting');
+                function send(extraHeaders) {
+                    if (!extraHeaders) return nativeFetch.apply(self, args);
+                    var init2 = Object.assign({}, init || {});
+                    var h = new Headers(init2.headers || {});
+                    Object.keys(extraHeaders).forEach(function (k) { h.set(k, extraHeaders[k]); });
+                    init2.headers = h;
+                    return nativeFetch.call(self, input, init2);
+                }
+                function track(res) {
+                    if (!res.ok || !res.body) { setPhase('idle'); return res; }
+                    try {
+                        var trimmed = parseInt(res.headers.get('X-Context-Trimmed') || '0', 10);
+                        if (trimmed > 0 && typeof window.__oxContextTrimmed === 'function') window.__oxContextTrimmed(trimmed, parseInt(res.headers.get('X-Context-Sent') || '0', 10));
+                    } catch (e) {}
+                    var decoder = new TextDecoder();
+                    var tail = '';
+                    var ts = new TransformStream({
+                        transform: function (chunk, controller) {
+                            controller.enqueue(chunk);
+                            var text = tail + decoder.decode(chunk, { stream: true });
+                            tail = text.slice(-64); // keep a little overlap so a key split across chunks still matches
+                            if (/"content":"[^"]/.test(text)) setPhase('answering');
+                            else if (/"reasoning":"[^"]/.test(text)) { if (window.__oxPhase !== 'answering') setPhase('thinking'); }
+                            else if (window.__oxPhase === 'connecting' && text.indexOf('PROCESSING') !== -1) setPhase('queued');
+                        },
+                        flush: function () { setPhase('idle'); }
+                    });
+                    return new Response(res.body.pipeThrough(ts), { status: res.status, statusText: res.statusText, headers: res.headers });
+                }
+                return send().then(function (res) {
+                    if (res.status !== 428 || typeof window.__oxVerify !== 'function') return res;
+                    setPhase('verifying');
+                    return res.clone().json().catch(function () { return {}; }).then(function (info) {
+                        if (info.code !== 'turnstile_required') return res;
+                        return window.__oxVerify(info).then(function (token) {
+                            if (!token) { setPhase('idle'); return res; } // dismissed → the app shows the server's message
+                            setPhase('connecting');
+                            return send({ 'X-Turnstile-Token': token });
+                        });
+                    });
+                }).then(track, function (e) { setPhase('idle'); throw e; });
+            };
+        })();
+    </script>
+
+    <script src="https://oxalpha.com/chatapp/chat-app.min.js?v=2">
+</script>
+    <script>
+    // Typing animation: cycles example prompts through the empty-state composer placeholder.
+    // Pauses while the user has typed something; resumes when the box is cleared.
+    (function () {
+        var phrases = [
+            'Refactor this 2,000-line module without changing its behavior…',
+            'Why does this async function sometimes race?',
+            'Summarize a 500-page spec and list the edge cases…',
+            'Explain this traceback and propose a fix…',
+            'Design a multi-step agent workflow with tool calls…',
+            'Review my pull request like a senior engineer…'
+        ];
+        var idx = 0, pos = 0, dir = 1, timer = null;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+        function tick() {
+            var el = document.querySelector('.empty-input-box textarea');
+            if (!el) { timer = setTimeout(tick, 600); return; }
+            if (el.value) { timer = setTimeout(tick, 400); return; }
+            var p = phrases[idx];
+            if (dir > 0) {
+                pos++;
+                if (pos >= p.length) { el.placeholder = p; dir = -1; timer = setTimeout(tick, 2000); return; }
+                el.placeholder = p.slice(0, pos) + '▍';
+                timer = setTimeout(tick, 26 + Math.random() * 38);
+            } else {
+                pos -= 2;
+                if (pos <= 0) { pos = 0; dir = 1; idx = (idx + 1) % phrases.length; el.placeholder = ''; timer = setTimeout(tick, 380); return; }
+                el.placeholder = p.slice(0, pos) + '▍';
+                timer = setTimeout(tick, 12);
+            }
         }
-        function resetTilt(element) {
-            element.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        timer = setTimeout(tick, 900);
+    })();
+
+    // Response actions: thumbs up/down (stored locally, no server call) + Regenerate on the latest reply.
+    // Buttons are appended to each reply's action bar; the bundle exposes its retry handler as window.__oxRetry.
+    (function () {
+        var KEY = 'ox_feedback', fb = {};
+        try { fb = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) {}
+        function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return 'm' + (h >>> 0).toString(36); }
+        // Identity of the open chat: the sidebar lists chats sorted by updatedAt (newest first), and the
+        // highlighted item's position maps onto the same ordering of the chats stored in localStorage.
+        function activeChatId() {
+            try {
+                var items = document.querySelectorAll('.sidebar .chat-item'), k = -1;
+                for (var i = 0; i < items.length; i++) if (items[i].classList.contains('active')) { k = i; break; }
+                if (k < 0) return null;
+                var chats = JSON.parse(localStorage.getItem('chattest_chats') || '[]');
+                if (chats.length !== items.length) return null; // storage not yet in sync with the sidebar (new chat being created)
+                chats.sort(function (a, b) { return new Date(b.updatedAt) - new Date(a.updatedAt); });
+                return chats[k] && chats[k].id ? String(chats[k].id) : null;
+            } catch (e) { return null; }
         }
-        items.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                applyTilt(card, e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height);
+        window.__oxActiveChatId = activeChatId;
+        // Vote key = which message (chat + position), plus a hash of its text so a regenerated reply
+        // starts clean. Keying by text alone made identical replies in different chats share one vote.
+        function idFor(msg) {
+            var prose = msg.querySelector('.prose');
+            var h = hash((prose ? prose.innerText : '').trim());
+            var chat = activeChatId();
+            var idx = Array.prototype.indexOf.call(document.querySelectorAll('.messages-col .msg-assistant'), msg);
+            return chat ? chat + ':' + idx + ':' + h : h;
+        }
+        function svg(d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>'; }
+        var UP = '<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
+<path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>';
+        var DOWN = '<path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/>
+<path d="M17 2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"/>';
+        var RETRY = '<polyline points="23 4 23 10 17 10"/>
+<path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>';
+        function mk(cls, tip, inner) { var b = document.createElement('button'); b.type = 'button'; b.className = 'msg-action-btn ' + cls; b.setAttribute('data-tip', tip); b.setAttribute('aria-label', tip); b.innerHTML = inner; return b; }
+        function augment(actions) {
+            if (actions.dataset.ox) return;
+            actions.dataset.ox = '1';
+            var msg = actions.closest('.msg-assistant');
+            if (!msg) return;
+            var id = function () { return idFor(msg); };
+            var up = mk('ox-up', 'Good response', svg(UP));
+            var down = mk('ox-down down', 'Bad response', svg(DOWN));
+            var retry = mk('ox-retry', 'Regenerate', svg(RETRY));
+            function paint() { var k = id(); up.classList.toggle('active', fb[k] === 'up'); down.classList.toggle('active', fb[k] === 'down'); }
+            function vote(v) { var k = id(); if (fb[k] === v) delete fb[k]; else fb[k] = v; try { localStorage.setItem(KEY, JSON.stringify(fb)); } catch (e) {} paint(); }
+            actions.oxPaint = paint;
+            up.addEventListener('click', function () { vote('up'); });
+            down.addEventListener('click', function () { vote('down'); });
+            retry.addEventListener('click', function () {
+                if (typeof window.__oxRetry !== 'function') return;
+                window.__oxRegen = true;              // drop the last user+assistant pair, then resend the same prompt
+                try { window.__oxRetry(); } finally { setTimeout(function () { window.__oxRegen = false; }, 300); }
             });
-            card.addEventListener('mouseleave', () => resetTilt(card));
-            card.addEventListener('touchstart', e => {
-                const rect = card.getBoundingClientRect();
-                applyTilt(card, e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top, rect.width, rect.height);
-            }, { passive: true });
-            card.addEventListener('touchmove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.touches[0].clientX - rect.left;
-                const y = e.touches[0].clientY - rect.top;
-                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) applyTilt(card, x, y, rect.width, rect.height);
-                else resetTilt(card);
-            }, { passive: true });
-            card.addEventListener('touchend', () => resetTilt(card));
-        });
+            paint();
+            var sep = document.createElement('span'); sep.className = 'ox-sep';
+            actions.appendChild(sep); actions.appendChild(up); actions.appendChild(down); actions.appendChild(retry);
+        }
+        function scan() {
+            document.querySelectorAll('.msg-assistant .msg-actions:not([data-ox])').forEach(augment);
+            // Re-evaluate existing buttons too: React reuses DOM nodes by index, so a node may now show a different message.
+            document.querySelectorAll('.msg-assistant .msg-actions[data-ox]').forEach(function (a) { if (a.oxPaint) a.oxPaint(); });
+        }
+        // Also watch class changes: switching chats with identical replies changes nothing in the message
+        // DOM, only the sidebar's "active" item — and that's what the vote key depends on. Coalesce per frame.
+        var queued = false;
+        function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; scan(); }); }
+        new MutationObserver(schedule).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+        scan();
+    })();
 
-        const notify = (msg, type = 'info') => {
-            const box = document.getElementById('notification-box');
-            box.innerHTML = msg; 
-            box.className = `toast-show ${type}`;
-            setTimeout(() => { box.className = ''; }, 3000);
+    // Download button on every code block: saves the block as a file. The extension comes from the
+    // fenced language (```html → .html); untagged blocks are sniffed (doctype → html, JSON, #!). If the
+    // model wrote a file name on the first line ("<!-- index.html -->", "// app.js") that name is used.
+    (function () {
+        var EXT = { html:'html', htm:'html', xml:'xml', svg:'svg', css:'css', scss:'scss', sass:'sass', less:'less',
+            js:'js', javascript:'js', mjs:'mjs', jsx:'jsx', ts:'ts', typescript:'ts', tsx:'tsx', json:'json', jsonc:'json',
+            py:'py', python:'py', php:'php', rb:'rb', ruby:'rb', go:'go', golang:'go', rs:'rs', rust:'rs', java:'java',
+            kt:'kt', kotlin:'kt', swift:'swift', c:'c', h:'h', cpp:'cpp', 'c++':'cpp', cc:'cpp', hpp:'hpp', cs:'cs', csharp:'cs',
+            sh:'sh', bash:'sh', shell:'sh', zsh:'sh', powershell:'ps1', ps1:'ps1', bat:'bat', cmd:'bat', sql:'sql',
+            yaml:'yml', yml:'yml', toml:'toml', ini:'ini', env:'env', md:'md', markdown:'md', txt:'txt', text:'txt', plaintext:'txt',
+            vue:'vue', svelte:'svelte', lua:'lua', r:'r', dart:'dart', scala:'scala', perl:'pl', pl:'pl', graphql:'graphql', gql:'graphql',
+            csv:'csv', diff:'diff', patch:'patch', dockerfile:'Dockerfile', docker:'Dockerfile', makefile:'Makefile', nginx:'conf', apache:'conf' };
+        function langOf(header, code) {
+            var m = /language-([\w+.-]+)/.exec(code.className || '');
+            var l = m ? m[1] : (header.firstElementChild ? header.firstElementChild.textContent : '');
+            return (l || '').trim().toLowerCase();
+        }
+        function sniff(text) {
+            var t = text.replace(/^\s+/, '');
+            if (/^<!doctype html|^<html[\s>]/i.test(t)) return 'html';
+            if (/^<\?php/.test(t)) return 'php';
+            if (/^<\?xml/.test(t)) return 'xml';
+            if (/^<svg[\s>]/i.test(t)) return 'svg';
+            if (/^#!.*\b(ba|z|da)?sh\b/.test(t)) return 'sh';
+            if (/^#!.*python/.test(t)) return 'py';
+            if (/^#!.*node/.test(t)) return 'js';
+            if (/^[\[{]/.test(t)) { try { JSON.parse(t); return 'json'; } catch (e) {} }
+            return '';
+        }
+        function fileName(header, code) {
+            var text = code.textContent || '';
+            var first = text.split('\n')[0] || '';
+            // A file name the model put in a comment on its own first line, e.g. "<!-- index.html -->", "// app.js", "# main.py"
+            var named = /^\s*(?:\/\/|#|<!--|\/\*|--|;)\s*(?:file(?:name)?\s*:\s*)?([\w][\w.-]*\.[A-Za-z][A-Za-z0-9]{0,5})\s*(?:-->|\*\/)?\s*$/.exec(first);
+            if (named) return named[1];
+            var l = langOf(header, code);
+            if (!l || l === 'code' || l === 'text' || l === 'plaintext' || l === 'txt') l = sniff(text) || 'txt';
+            var ext = EXT[l] || (/^[a-z0-9]{1,6}$/.test(l) ? l : 'txt');
+            if (ext === 'Dockerfile' || ext === 'Makefile') return ext;
+            var prose = header.closest('.prose');
+            var n = prose ? Array.prototype.indexOf.call(prose.querySelectorAll('.code-block-header'), header) + 1 : 1;
+            return 'code-' + n + '.' + ext;
+        }
+        function save(name, text) {
+            var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a'); a.href = url; a.download = name; a.style.display = 'none';
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+        }
+        function augment(header) {
+            if (header.dataset.dl) return;
+            header.dataset.dl = '1';
+            var pre = header.nextElementSibling;
+            var code = pre && pre.tagName === 'PRE' ? pre.querySelector('code') : null;
+            if (!code) return;
+            var btn = document.createElement('span');
+            btn.className = 'code-dl-btn'; btn.setAttribute('role', 'button'); btn.tabIndex = 0;
+            btn.textContent = 'Download'; btn.title = 'Save this code as a file';
+            var timer = null;
+            function go(e) {
+                e.preventDefault(); e.stopPropagation();
+                var name = fileName(header, code);
+                save(name, code.textContent || '');
+                btn.textContent = 'Saved ' + name; btn.classList.add('is-done');
+                clearTimeout(timer); timer = setTimeout(function () { btn.textContent = 'Download'; btn.classList.remove('is-done'); }, 1800);
+            }
+            btn.addEventListener('click', go);
+            btn.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') go(e); });
+            header.appendChild(btn);
+        }
+        function scan() {
+            document.querySelectorAll('.code-block-header:not([data-dl])').forEach(augment);
+            document.querySelectorAll('.code-copy-btn').forEach(function (b) { b.classList.toggle('is-done', b.textContent === 'Copied!'); });
+        }
+        new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+        scan();
+    })();
+
+    // Waiting status: replaces the three dots with shimmering text ("Connecting…", "Waiting for model…",
+    // "Thinking…") driven by window.__oxPhase from the stream tracker above. Shows elapsed time once
+    // thinking runs long, so a slow reasoning pass doesn't look like a hang.
+    (function () {
+        var LABEL = { connecting: 'Thinking…', queued: 'Waiting for model…', thinking: 'Thinking…', answering: 'Writing…', verifying: 'Waiting for verification…', idle: 'Thinking…' };
+        function text() {
+            var p = window.__oxPhase || 'idle';
+            var s = LABEL[p] || LABEL.idle;
+            var secs = Math.floor((Date.now() - (window.__oxPhaseAt || Date.now())) / 1000);
+            if (p === 'queued') {
+                // Queue time at the provider is highly variable (1 s … 2 min); say so before users assume it's broken.
+                if (secs >= 60)      s = 'Still waiting — the model is under heavy load right now · ' + secs + 's';
+                else if (secs >= 15) s = 'The model is busy right now — usually under a minute · ' + secs + 's';
+                else if (secs >= 8)  s = 'Waiting for model · ' + secs + 's…';
+            } else if (p === 'thinking') {
+                if (secs >= 90)     s = 'Still thinking — long answers take a while · ' + secs + 's';
+                else if (secs >= 8) s = 'Thinking for ' + secs + 's…';
+            }
+            return s;
+        }
+        function augment(dots) {
+            if (dots.dataset.oxStatus) return;
+            dots.dataset.oxStatus = '1';
+            var el = document.createElement('i');
+            el.className = 'ox-status'; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite');
+            el.textContent = text();
+            dots.appendChild(el);
+        }
+        function scan() { document.querySelectorAll('.typing-dots:not([data-ox-status])').forEach(augment); }
+        function refresh() {
+            var t = text();
+            document.querySelectorAll('.ox-status').forEach(function (el) { if (el.textContent !== t) el.textContent = t; });
+        }
+        new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+        scan();
+        setInterval(refresh, 1000);
+        // Phase flips happen between ticks; poll a bit faster so "Thinking…" shows up promptly.
+        (function watch() { var last = ''; setInterval(function () { if (window.__oxPhase !== last) { last = window.__oxPhase; refresh(); } }, 150); })();
+    })();
+
+    // Mobile drawer: a close (×) button in the sidebar header and Escape-to-close. Both just trigger the
+    // app's own overlay click handler, so the React state stays in charge of open/closed.
+    (function () {
+        function closeDrawer() { var o = document.querySelector('.sidebar-overlay.open'); if (o) o.click(); }
+        function augment(top) {
+            if (top.querySelector('.ox-drawer-close')) return;
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'ox-drawer-close'; b.setAttribute('aria-label', 'Close menu');
+            b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/>
+    <line x1="6" y1="6" x2="18" y2="18"/>
+</svg>';
+            b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); closeDrawer(); });
+            top.appendChild(b);
+        }
+        function scan() { document.querySelectorAll('.sidebar-header-top').forEach(augment); }
+        new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+        scan();
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+    })();
+
+    // Image attachments: a paperclip in the composer (+ paste / drag-and-drop), up to N images per message
+    // (window.__CHAT_IMAGES__.max). Images are downscaled in the browser, kept only in memory/sessionStorage,
+    // and sent inline as data: URLs by rewriting the outgoing /api/chat body (hook used by the fetch wrapper).
+    (function () {
+        var CFG = window.__CHAT_IMAGES__ || {};
+        var MAX = CFG.max || 0, MAX_BYTES = CFG.maxBytes || 5 * 1024 * 1024, KEEP = CFG.history || 4;
+        var FCFG = window.__CHAT_FILES__ || {};
+        var FMAX = FCFG.max || 0, FMAX_BYTES = FCFG.maxBytes || 100 * 1024;
+        if ((!MAX && !FMAX) || !window.FileReader) return;
+        var TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+        var FEXT = ['html','htm','css','js','mjs','jsx','ts','tsx','py','php','rb','go','rs','java','kt','swift','c','h','cpp','hpp','cs','sh','bash','zsh','sql','json','yml','yaml','toml','ini','env','md','markdown','txt','csv','tsv','xml','svg','log','conf','vue','svelte','lua','r','pl','dart','scala','diff','patch'];
+        var FLANG = { js:'javascript', mjs:'javascript', ts:'typescript', py:'python', rb:'ruby', rs:'rust', kt:'kotlin', sh:'bash', bash:'bash', zsh:'bash', md:'markdown', yml:'yaml', htm:'html' };
+        var MAX_SIDE = 1568, DEFAULT_PROMPT = 'What do you see in this image?', FILE_PROMPT = 'Review the attached file.';
+        var pending = [];      // staged images for the next message: {url, name}
+        var pendingFiles = []; // staged text files: {name, size, text}
+        var sent = [];     // per sent user message: {chatId, index, text, images}
+        var SESSION_KEY = 'ox_images_session';
+        try { sent = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '[]') || []; } catch (e) { sent = []; }
+        function persist() { try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(sent.slice(-40))); } catch (e) {} }
+        function activeChat() { return typeof window.__oxActiveChatId === 'function' ? window.__oxActiveChatId() : null; }
+
+        var toastEl = null, toastTimer = null;
+        function toast(msg) {
+            if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'ox-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); }
+            toastEl.textContent = msg; toastEl.classList.add('show');
+            clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+        }
+        function box() { return document.querySelector('.input-box, .empty-input-box'); }
+        function textarea() { var b = box(); return b ? b.querySelector('textarea') : null; }
+        // Put text into the React-controlled textarea so the app's own state updates (and Send enables).
+        // Path 1: execCommand('insertText') — a genuine input, the only method iOS Safari honours reliably.
+        // Path 2: native value setter + input event (Chrome/Firefox). Then verify Send actually enabled.
+        function sendButton() { var b = box(); return b ? b.querySelector('.send-btn') : null; }
+        function setTextareaValue(el, v) {
+            var ok = false;
+            try { el.focus(); el.setSelectionRange(0, el.value.length); ok = document.execCommand('insertText', false, v) && el.value === v; } catch (e) { ok = false; }
+            if (!ok) {
+                var d = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+                d.set.call(el, v); el.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            try { el.setSelectionRange(el.value.length, el.value.length); } catch (e) {}
+        }
+        function ensureText() {
+            var ta = textarea();
+            if (!ta || ta.value.trim()) return;
+            setTextareaValue(ta, pending.length ? DEFAULT_PROMPT : FILE_PROMPT);
+            // If the app still thinks the box is empty (Send disabled), retry via the other path once.
+            setTimeout(function () {
+                var btn = sendButton();
+                if (btn && btn.disabled && ta.value.trim()) {
+                    var d = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+                    d.set.call(ta, ''); d.set.call(ta, DEFAULT_PROMPT);
+                    ta.dispatchEvent(new Event('input', { bubbles: true }));
+                    ta.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }, 120);
+        }
+
+        // Read + downscale (≤1568px, JPEG 0.85); falls back to the original bytes when canvas isn't available
+        // or doesn't make the file smaller. GIFs are passed through untouched.
+        function process(file) {
+            return new Promise(function (resolve, reject) {
+                if (TYPES.indexOf(file.type) === -1) return reject('Only JPEG, PNG, WebP or GIF images are supported.');
+                if (file.size > 25 * 1024 * 1024) return reject('That image is too large (max 25 MB).');
+                var reader = new FileReader();
+                function finish(url) {
+                    if (url.length * 0.75 > MAX_BYTES) return reject('That image is too large (max ' + Math.round(MAX_BYTES / 1048576) + ' MB after compression).');
+                    resolve({ url: url, name: file.name || 'image' });
+                }
+                reader.onload = function () {
+                    var original = reader.result;
+                    if (file.type === 'image/gif' || !window.HTMLCanvasElement) return finish(original);
+                    var img = new Image();
+                    img.onload = function () {
+                        var w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+                        var scale = Math.min(1, MAX_SIDE / Math.max(w || 1, h || 1));
+                        if (scale === 1 && file.size <= 600 * 1024) return finish(original);
+                        try {
+                            var c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w * scale)); c.height = Math.max(1, Math.round(h * scale));
+                            c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                            var out = c.toDataURL('image/jpeg', 0.85);
+                            finish(out.length < original.length || scale < 1 ? out : original);
+                        } catch (e) { finish(original); }
+                    };
+                    img.onerror = function () { finish(original); };
+                    img.src = original;
+                };
+                reader.onerror = function () { reject('Could not read that file.'); };
+                reader.readAsDataURL(file);
+            });
+        }
+        function extOf(name) { return (String(name || '').split('.').pop() || '').toLowerCase(); }
+        function isTextFile(f) { return FMAX > 0 && (FEXT.indexOf(extOf(f.name)) !== -1 || /^text\//.test(f.type)); }
+        function processText(f) {
+            return new Promise(function (resolve, reject) {
+                if (f.size > FMAX_BYTES) return reject('"' + f.name + '" is too large (max ' + Math.round(FMAX_BYTES / 1024) + ' KB). Paste the relevant part instead.');
+                var r = new FileReader();
+                r.onload = function () {
+                    var t = String(r.result || '');
+                    if (t.indexOf('\u0000') !== -1) return reject('"' + f.name + '" does not look like a text file.');
+                    resolve({ name: f.name || 'file.txt', size: f.size, text: t });
+                };
+                r.onerror = function () { reject('Could not read "' + f.name + '".'); };
+                r.readAsText(f);
+            });
+        }
+        function addFiles(files) {
+            var list = Array.prototype.slice.call(files || []).filter(function (f) { return f; });
+            if (!list.length) return;
+            list.forEach(function (f) {
+                if (TYPES.indexOf(f.type) !== -1 && MAX > 0) {
+                    if (pending.length >= MAX) return toast('Up to ' + MAX + ' images per message.');
+                    process(f).then(function (img) { if (pending.length < MAX) { pending.push(img); renderStrip(); ensureText(); } }, toast);
+                } else if (isTextFile(f)) {
+                    if (pendingFiles.length >= FMAX) return toast('Up to ' + FMAX + ' files per message.');
+                    processText(f).then(function (tf) { if (pendingFiles.length < FMAX) { pendingFiles.push(tf); renderStrip(); ensureText(); } }, toast);
+                } else {
+                    toast('Unsupported file type. Images (JPEG/PNG/WebP/GIF) or text/code files.');
+                }
+            });
+        }
+        function addImage(img) { if (pending.length < MAX) { pending.push(img); renderStrip(); ensureText(); } }
+
+        // --- composer UI: paperclip button, hidden file input, thumbnail strip, paste + drop
+        var CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+</svg>';
+        function augmentBox(b) {
+            if (b.querySelector('.ox-attach')) return;
+            var wrap = document.createElement('label');
+            wrap.className = 'ox-attach'; wrap.title = 'Attach an image or a text/code file'; wrap.setAttribute('aria-label', 'Attach image or file');
+            var accept = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'].concat(FEXT.map(function (e) { return '.' + e; })).join(',');
+            wrap.innerHTML = CLIP + '<input type="file" accept="' + accept + '" multiple>';
+            wrap.querySelector('input').addEventListener('change', function (e) { addFiles(e.target.files); e.target.value = ''; });
+            b.insertBefore(wrap, b.firstChild);
+            b.addEventListener('dragover', function (e) { if (e.dataTransfer && Array.prototype.some.call(e.dataTransfer.types || [], function (t) { return t === 'Files'; })) { e.preventDefault(); b.classList.add('ox-dragover'); } });
+            b.addEventListener('dragleave', function () { b.classList.remove('ox-dragover'); });
+            b.addEventListener('drop', function (e) { b.classList.remove('ox-dragover'); if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) { e.preventDefault(); addFiles(e.dataTransfer.files); } });
+            b.addEventListener('paste', function (e) {
+                var files = e.clipboardData && e.clipboardData.files;
+                if (files && files.length) { e.preventDefault(); addFiles(files); }
+            });
+        }
+        function renderStrip() {
+            var b = box(); if (!b) return;
+            var strip = b.querySelector('.ox-attach-strip');
+            if (!pending.length && !pendingFiles.length) { if (strip) strip.remove(); b.classList.remove('ox-has-strip'); return; }
+            b.classList.add('ox-has-strip');
+            if (!strip) { strip = document.createElement('div'); strip.className = 'ox-attach-strip'; b.insertBefore(strip, b.firstChild); }
+            strip.innerHTML = '';
+            pending.forEach(function (img, i) {
+                var chip = document.createElement('div'); chip.className = 'ox-chip';
+                var im = document.createElement('img'); im.src = img.url; im.alt = img.name; chip.appendChild(im);
+                var rm = document.createElement('button'); rm.type = 'button'; rm.setAttribute('aria-label', 'Remove image'); rm.textContent = '×';
+                rm.addEventListener('click', function () { pending.splice(i, 1); renderStrip(); });
+                chip.appendChild(rm); strip.appendChild(chip);
+            });
+            pendingFiles.forEach(function (f, i) {
+                var chip = document.createElement('div'); chip.className = 'ox-fchip'; chip.title = f.name;
+                chip.innerHTML = '<span class="ox-fchip-ico">📄</span>
+<span class="ox-fchip-info">
+    <b>
+    </b>
+    <i>
+    </i>
+</span>';
+                chip.querySelector('b').textContent = f.name;
+                chip.querySelector('i').textContent = f.size >= 1024 ? Math.round(f.size / 1024) + ' KB' : f.size + ' B';
+                var rm = document.createElement('button'); rm.type = 'button'; rm.setAttribute('aria-label', 'Remove file'); rm.textContent = '×';
+                rm.addEventListener('click', function () { pendingFiles.splice(i, 1); renderStrip(); });
+                chip.appendChild(rm); strip.appendChild(chip);
+            });
+        }
+        function fileBlock(f) {
+            var fence = '````';
+            return '\n\n[Attached file: ' + f.name + ']\n' + fence + (FLANG[extOf(f.name)] || extOf(f.name) || '') + '\n' + f.text + '\n' + fence;
+        }
+
+        // --- outgoing payload: called by the fetch wrapper with the JSON body string
+        function findSent(chat, index, text) {
+            var best = null;
+            for (var i = sent.length - 1; i >= 0; i--) {
+                var e = sent[i];
+                if (e.index !== index || e.text !== text) continue;
+                if (chat && e.chatId === chat) return e;
+                if (!e.chatId || !chat) best = best || e;
+            }
+            return best;
+        }
+        window.__oxRewriteChatBody = function (bodyStr) {
+            var data = JSON.parse(bodyStr), msgs = data.messages;
+            if (!Array.isArray(msgs) || !msgs.length) return bodyStr;
+            var chat = activeChat(), last = msgs.length - 1, changed = false;
+            if ((pending.length || pendingFiles.length) && msgs[last].role === 'user' && typeof msgs[last].content === 'string') {
+                sent.push({ chatId: chat, index: last, text: msgs[last].content, images: pending.slice(), files: pendingFiles.slice() });
+                pending = []; pendingFiles = []; persist(); renderStrip();
+            }
+            msgs.forEach(function (m, i) {
+                if (m.role !== 'user' || typeof m.content !== 'string') return;
+                var e = findSent(chat, i, m.content); if (!e) return;
+                var recent = i >= msgs.length - KEEP;
+                var text = m.content, files = e.files || [];
+                files.forEach(function (f) { text += recent ? fileBlock(f) : '\n\n[Attached file: ' + f.name + ' — content omitted]'; });
+                if (recent && e.images && e.images.length) {
+                    m.content = [{ type: 'text', text: text }].concat(e.images.map(function (im) { return { type: 'image_url', image_url: { url: im.url } }; }));
+                } else {
+                    m.content = text;
+                }
+                if (m.content !== e.text || files.length || (e.images && e.images.length)) changed = true;
+            });
+            return changed ? JSON.stringify(data) : bodyStr;
         };
 
-        document.getElementById('copy-btn').addEventListener('click', () => {
-            const textarea = document.getElementById('noi-dung-page2');
-            textarea.select();
-            textarea.setSelectionRange(0, 99999);
-            try {
-                document.execCommand('copy');
-                notify("✅ Đã sao chép Script thành công!", "success");
-            } catch (err) {
-                notify("❌ Thiết bị không hỗ trợ, vui lòng copy thủ công.", "error");
-            }
-        });
-
-        // ----------------------------------------------------
-        // LOGIC XỬ LÝ NHIỆM VỤ, RESET VÀ ĐỒNG HỒ
-        // ----------------------------------------------------
-        const THOI_GIAN_RESET = 3 * 60 * 1000; // 3 phút
-        const THOI_GIAN_CHO_NV = 5 * 1000; // 5 giây
-        let nv1HoanThanh = false, nv2HoanThanh = false;
-        const timerBadge = document.getElementById("timer-badge");
-        const countdownText = document.getElementById("countdown-text");
-
-        // Cập nhật giao diện đồng hồ
-        function updateTimerDisplay() {
-            const expireTime = localStorage.getItem("session_expire");
-            if (!expireTime) {
-                countdownText.innerText = "Phiên chưa bắt đầu";
-                timerBadge.className = "timer-badge";
-                return;
-            }
-
-            const timeLeft = parseInt(expireTime) - Date.now();
-            
-            if (timeLeft <= 0) {
-                countdownText.innerText = "Đã hết hạn";
-                timerBadge.className = "timer-badge warning";
-            } else {
-                const m = Math.floor(timeLeft / 60000);
-                const s = Math.floor((timeLeft % 60000) / 1000);
-                countdownText.innerText = `Làm mới sau: ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-                
-                // Đổi màu đỏ khi dưới 30 giây
-                if (timeLeft < 30000) {
-                    timerBadge.className = "timer-badge warning";
-                } else {
-                    timerBadge.className = "timer-badge active";
-                }
+        // --- thumbnails inside the user's bubble (React owns the text; we add a block above it)
+        function renderBubbles() {
+            var chat = activeChat();
+            sent.forEach(function (e) { if (!e.chatId && chat) e.chatId = chat; }); // stamp entries created before the chat existed
+            var nodes = document.querySelectorAll('.messages-col .msg');
+            for (var i = 0; i < nodes.length; i++) {
+                var n = nodes[i]; if (!n.classList.contains('msg-user')) continue;
+                var bubble = n.querySelector('.msg-bubble'); if (!bubble) continue;
+                var text = bubble.textContent.trim();
+                var e = findSent(chat, i, text);
+                var nf = e && e.files ? e.files.length : 0, ni = e && e.images ? e.images.length : 0;
+                var cur = n.querySelector(':scope > .ox-atts'), key = e ? (e.chatId || '') + ':' + e.index + ':' + ni + ':' + nf : '';
+                if (!e || (!ni && !nf)) { if (cur) cur.remove(); n.classList.remove('ox-has-imgs'); continue; }
+                if (cur && cur.dataset.key === key) continue;
+                if (cur) cur.remove();
+                // Separate block above the text bubble (ChatGPT-style), right-aligned like the bubble.
+                var wrap = document.createElement('div'); wrap.className = 'ox-atts ox-imgs'; wrap.dataset.key = key;
+                (e.images || []).forEach(function (im) {
+                    var a = document.createElement('a'); a.href = im.url; a.target = '_blank'; a.rel = 'noopener'; a.title = im.name || 'image';
+                    var img = document.createElement('img'); img.src = im.url; img.alt = im.name || 'image'; img.loading = 'lazy';
+                    a.appendChild(img); wrap.appendChild(a);
+                });
+                (e.files || []).forEach(function (f) {
+                    var chip = document.createElement('button'); chip.type = 'button'; chip.className = 'ox-fchip ox-fchip-sent'; chip.title = 'Open ' + f.name;
+                    chip.innerHTML = '<span class="ox-fchip-ico">📄</span>
+<span class="ox-fchip-info">
+    <b>
+    </b>
+    <i>
+    </i>
+</span>';
+                    chip.querySelector('b').textContent = f.name;
+                    chip.querySelector('i').textContent = f.size >= 1024 ? Math.round(f.size / 1024) + ' KB' : f.size + ' B';
+                    chip.addEventListener('click', function () {
+                        try { var u = URL.createObjectURL(new Blob([f.text], { type: 'text/plain;charset=utf-8' })); window.open(u, '_blank'); setTimeout(function () { URL.revokeObjectURL(u); }, 30000); } catch (err) {}
+                    });
+                    wrap.appendChild(chip);
+                });
+                n.classList.add('ox-has-imgs');
+                n.insertBefore(wrap, n.firstChild);
             }
         }
+        function scan() { document.querySelectorAll('.input-box, .empty-input-box').forEach(augmentBox); renderStrip(); renderBubbles(); }
+        var queued = false;
+        new MutationObserver(function () { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; scan(); }); })
+            .observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+        scan();
+        window.__oxAttach = { add: addImage, pending: function () { return pending.slice(); } };
+    })();
 
-        function thucHienResetThucSu(isManual = false) {
-            nv1HoanThanh = false; nv2HoanThanh = false;
-            
-            // Xóa sạch lịch sử bộ nhớ
-            localStorage.removeItem("session_expire");
-            localStorage.removeItem("startTimeNv1"); localStorage.removeItem("startTimeNv2");
-            localStorage.removeItem("statusNv1"); localStorage.removeItem("statusNv2");
-            
-            // Trả giao diện nhiệm vụ 1 về gốc
-            const nhan1 = document.getElementById("nhan-nv1");
-            nhan1.innerHTML = "Chưa làm"; 
-            nhan1.className = "status-badge";
-            document.getElementById("khung-nv1").classList.remove("success-box");
-            
-            // Trả giao diện nhiệm vụ 2 về gốc
-            const nhan2 = document.getElementById("nhan-nv2");
-            nhan2.innerHTML = "Chưa làm"; 
-            nhan2.className = "status-badge";
-            document.getElementById("khung-nv2").classList.remove("success-box");
+    // Context-window hint: when the proxy reports it trimmed older messages, show a small dismissible note
+    // above the composer — once per chat per session — so "the model forgot" isn't a mystery.
+    (function () {
+        var shownFor = {};
+        function chatKey() { return (typeof window.__oxActiveChatId === 'function' && window.__oxActiveChatId()) || 'current'; }
+        window.__oxContextTrimmed = function (dropped, sent) {
+            var key = chatKey();
+            if (shownFor[key]) return;
+            shownFor[key] = true;
+            var area = document.querySelector('.input-area'); if (!area) return;
+            var old = area.querySelector('.ox-note'); if (old) old.remove();
+            var note = document.createElement('div'); note.className = 'ox-note'; note.setAttribute('role', 'status');
+            note.innerHTML = '<span>This chat is long — the model now sees only the most recent ' + (sent || 'few') + ' messages. Start a <b>new chat</b> for a fresh context.</span>
+<button type="button" aria-label="Dismiss">×</button>';
+            note.querySelector('button').addEventListener('click', function () { note.remove(); });
+            area.insertBefore(note, area.firstChild);
+            setTimeout(function () { if (note.parentNode) note.remove(); }, 20000);
+        };
+        // Drop the note when the user switches chats
+        new MutationObserver(function () { var n = document.querySelector('.ox-note'); if (n && n.dataset.chat && n.dataset.chat !== chatKey()) n.remove(); })
+            .observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    })();
 
-            kiemTraMoKhoa();
-            document.getElementById("white-screen").classList.remove("show");
-            updateTimerDisplay(); // Reset đồng hồ
-
-            if (isManual) {
-                notify("🔄 Đã làm mới trang và các nhiệm vụ!", "success");
-            } else {
-                notify("🔄 Phiên làm việc đã hết hạn sau 3 phút. Đã tự động reset lại web.", "info");
-            }
-        }
-
-        // Bắt sự kiện nút Reset thủ công
-        document.getElementById("nut-reset-thu-cong").addEventListener("click", () => {
-            thucHienResetThucSu(true);
-        });
-
-        // Kiểm tra xem đã vượt quá 3 phút kể từ lúc bắt đầu làm chưa
-        function kiemTraHanSuDung() {
-            const expireTime = localStorage.getItem("session_expire");
-            if (expireTime && Date.now() > parseInt(expireTime)) {
-                thucHienResetThucSu(false);
-                return true; 
-            }
-            return false; 
-        }
-
-        function batDauPhienLamViec() {
-            if (!localStorage.getItem("session_expire")) {
-                localStorage.setItem("session_expire", Date.now() + THOI_GIAN_RESET);
-                updateTimerDisplay(); // Cập nhật đồng hồ ngay lập tức
-            }
-        }
-
-        document.getElementById("link-nv1").addEventListener("click", () => {
-            if (nv1HoanThanh || kiemTraHanSuDung()) return;
-            batDauPhienLamViec();
-            localStorage.setItem("startTimeNv1", Date.now());
-            localStorage.setItem("statusNv1", "checking");
-            document.getElementById("nhan-nv1").className = "status-badge checking"; 
-            document.getElementById("nhan-nv1").innerHTML = "⏳ Đang kiểm tra...";
-        });
-
-        document.getElementById("link-nv2").addEventListener("click", () => {
-            if (nv2HoanThanh || kiemTraHanSuDung()) return;
-            batDauPhienLamViec();
-            localStorage.setItem("startTimeNv2", Date.now());
-            localStorage.setItem("statusNv2", "checking");
-            document.getElementById("nhan-nv2").className = "status-badge checking"; 
-            document.getElementById("nhan-nv2").innerHTML = "⏳ Đang kiểm tra...";
-        });
-
-        function kiemTraTienTrinhNhiemVu() {
-            if (kiemTraHanSuDung()) return; 
-
-            const now = Date.now();
-            const kiemTraNhiemVu = (nvId, isComplete, setComplete) => {
-                const status = localStorage.getItem(`status${nvId}`);
-                if (status === "checking" && !isComplete) {
-                    const elapsed = now - parseInt(localStorage.getItem(`startTime${nvId}`) || "0");
-                    if (elapsed >= THOI_GIAN_CHO_NV) {
-                        setComplete(true);
-                        localStorage.setItem(`status${nvId}`, "success");
-                        const badge = document.getElementById(`nhan-${nvId.toLowerCase()}`);
-                        badge.innerHTML = "✓ Đã Xong";
-                        badge.className = "status-badge success"; 
-                        document.getElementById(`khung-${nvId.toLowerCase()}`).classList.add("success-box"); 
-                        kiemTraMoKhoa();
-                    } else {
-                        localStorage.setItem(`status${nvId}`, "error");
-                        const badge = document.getElementById(`nhan-${nvId.toLowerCase()}`);
-                        badge.innerHTML = "❌ Thử lại";
-                        badge.className = "status-badge error"; 
-                        notify(`⚠️ Bạn quay lại quá sớm. Hãy ở lại web ít nhất 5 giây!`, "error");
-                        setTimeout(() => { 
-                            if (localStorage.getItem(`status${nvId}`) === "error") { 
-                                localStorage.removeItem(`status${nvId}`);
-                                badge.innerHTML = "Chưa làm";
-                                badge.className = "status-badge"; 
-                            } 
-                        }, 2500);
-                    }
-                }
-            };
-
-            kiemTraNhiemVu("Nv1", nv1HoanThanh, (val) => nv1HoanThanh = val);
-            kiemTraNhiemVu("Nv2", nv2HoanThanh, (val) => nv2HoanThanh = val);
-        }
-
-        // Vòng lặp tối ưu: Xử lý đồng thời Đồng Hồ Đếm Ngược + Logic Check Nhiệm Vụ 
-        setInterval(() => {
-            updateTimerDisplay(); // Cập nhật đồng hồ mỗi 500ms
-            
-            if (kiemTraHanSuDung()) return;
-            
-            const now = Date.now();
-            ['Nv1', 'Nv2'].forEach(nv => {
-                if (localStorage.getItem(`status${nv}`) === "checking") {
-                    const elapsed = now - parseInt(localStorage.getItem(`startTime${nv}`) || "0");
-                    if (elapsed < THOI_GIAN_CHO_NV) {
-                        const secondsLeft = Math.ceil((THOI_GIAN_CHO_NV - elapsed) / 1000);
-                        document.getElementById(`nhan-${nv.toLowerCase()}`).innerHTML = `⏳ Còn ${secondsLeft}s`;
-                    } else {
-                        kiemTraTienTrinhNhiemVu();
-                    }
-                }
-            });
-        }, 500);
-
-        // Lắng nghe khi người dùng chuyển lại Tab / Ứng dụng
-        window.addEventListener("focus", kiemTraTienTrinhNhiemVu);
-        document.addEventListener("visibilitychange", () => {
-            if (document.visibilityState === 'visible') kiemTraTienTrinhNhiemVu();
-        });
-
-        // Tải lại trạng thái mượt mà khi F5
-        window.addEventListener("load", () => {
-            updateTimerDisplay(); // Khởi tạo đồng hồ lúc load
-            if (kiemTraHanSuDung()) return; 
-
-            ['Nv1', 'Nv2'].forEach(nv => {
-                const st = localStorage.getItem(`status${nv}`);
-                if (st !== "checking" && st !== "success") {
-                    localStorage.removeItem(`status${nv}`);
-                    localStorage.removeItem(`startTime${nv}`);
-                } else if (st === "success") {
-                    if (nv === 'Nv1') nv1HoanThanh = true;
-                    if (nv === 'Nv2') nv2HoanThanh = true;
-                    const badge = document.getElementById(`nhan-${nv.toLowerCase()}`);
-                    badge.innerHTML = "✓ Đã Xong";
-                    badge.className = "status-badge success"; 
-                    document.getElementById(`khung-${nv.toLowerCase()}`).classList.add("success-box"); 
-                }
-            });
-            kiemTraMoKhoa();
-            
-            setTimeout(kiemTraTienTrinhNhiemVu, 500);
-        });
-
-        const nutGiaiBai = document.getElementById("nut-giai-bai");
-        const manHinhTrang = document.getElementById("white-screen");
-
-        function kiemTraMoKhoa() {
-            const btnText = nutGiaiBai.querySelector('span');
-            const btnSvg = nutGiaiBai.querySelector('svg');
-            
-            if (nv1HoanThanh && nv2HoanThanh) {
-                nutGiaiBai.classList.add("active");
-                btnText.innerHTML = "🚀 BẤM VÀO ĐÂY ĐỂ NHẬN SCRIPT";
-                btnSvg.innerHTML = `<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L22 2"/>`;
-            } else {
-                nutGiaiBai.classList.remove("active");
-                btnSvg.innerHTML = `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`;
-                if (nv1HoanThanh) btnText.innerHTML = "Còn thiếu bước: Làm Nhiệm Vụ 2";
-                else if (nv2HoanThanh) btnText.innerHTML = "Còn thiếu bước: Làm Nhiệm Vụ 1";
-                else btnText.innerHTML = "Hoàn thành nhiệm vụ để mở khóa";
-            }
-        }
-
-        nutGiaiBai.addEventListener("click", () => {
-            if (nutGiaiBai.classList.contains("active")) {
-                if (!kiemTraHanSuDung()) { 
-                    manHinhTrang.classList.add("show");
-                }
-            }
-        });
-
-        document.getElementById("back-btn").addEventListener("click", () => {
-            manHinhTrang.classList.remove("show"); 
-        });
+    // Smart auto-scroll: the app only follows the streaming reply while the user is at the bottom.
+    // Scroll up to read → it stops following; scroll back down (or tap the pill) → it follows again.
+    (function () {
+        window.__oxStick = true;
+        var lastUserInput = 0;
+        function wrap() { return document.querySelector('.messages-wrap'); }
+        function distFromBottom(w) { return w.scrollHeight - w.scrollTop - w.clientHeight; }
+        function jump() { var j = document.querySelector('.ox-jump'); if (!j) { j = document.createElement('button'); j.type = 'button'; j.className = 'ox-jump'; j.innerHTML = 'Jump to latest <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="6 9 12 15 18 9"/>
+</svg>'; j.addEventListener('click', function () { window.__oxStick = true; var w = wrap(); if (w) w.scrollTo({ top: w.scrollHeight, behavior: 'smooth' }); update(); }); } var area = document.querySelector('.chat-area'); if (area && j.parentNode !== area) area.appendChild(j); return j; }
+        function update() { var j = jump(); var streaming = !!document.querySelector('.stop-btn'); j.classList.toggle('show', streaming && window.__oxStick === false); }
+        function markUser() { lastUserInput = Date.now(); }
+        document.addEventListener('wheel', function (e) { if (e.target.closest && e.target.closest('.messages-wrap')) { markUser(); if (e.deltaY < 0) { window.__oxStick = false; update(); } } }, { passive: true, capture: true });
+        document.addEventListener('touchmove', markUser, { passive: true, capture: true });
+        document.addEventListener('mousedown', markUser, true);
+        document.addEventListener('keydown', function (e) { if (/^(ArrowUp|PageUp|Home)$/.test(e.key)) { markUser(); window.__oxStick = false; update(); } }, true);
+        document.addEventListener('scroll', function (e) {
+            var w = e.target; if (!w || !w.classList || !w.classList.contains('messages-wrap')) return;
+            var d = distFromBottom(w);
+            if (d <= 40) { window.__oxStick = true; }
+            else if (d > 120 && Date.now() - lastUserInput < 1200) { window.__oxStick = false; }
+            update();
+        }, true);
+        // Sending a message (or regenerating) always re-engages following
+        document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.send-btn, .ox-retry')) { window.__oxStick = true; } }, true);
+        document.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && e.target.tagName === 'TEXTAREA') { window.__oxStick = true; } }, true);
+        new MutationObserver(update).observe(document.body, { childList: true, subtree: true });
+    })();
     </script>
-</body>
-</html>
+
+    <!-- Google tag (gtag.js) -->
+    
+    
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a302a36e4b121fa4',t:'MTc4NzU3NzQ1OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;762e00b9efed439da7e9ba1f068b7b2e&quot;}" crossorigin="anonymous">
+</script>
+
+
+
 <script>
-console.log("⚡ [Trang 1] JavaScript đã sẵn sàng hoạt động!");
+// JS của trang web đã được định dạng và tích hợp chuẩn xác trong tab HTML
 
 </script>
+
 
 </body>
 </html>
